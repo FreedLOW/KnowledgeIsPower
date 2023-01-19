@@ -1,7 +1,8 @@
 ﻿using CodeBase.CameraLogic;
+using CodeBase.Infrastructure.Factory;
 using UnityEngine;
 
-namespace CodeBase.Infrastructure
+namespace CodeBase.Infrastructure.State
 {
     public class LoadLevelState : IPayloadedState<string>
     {
@@ -12,11 +13,12 @@ namespace CodeBase.Infrastructure
         private readonly LoadingCurtain loadingCurtain;
         private readonly IGameFactory gameFactory;
 
-        public LoadLevelState(GameStateMachine gameStateMachine, SceneLoader sceneLoader, LoadingCurtain loadingCurtain)
+        public LoadLevelState(GameStateMachine gameStateMachine, SceneLoader sceneLoader, LoadingCurtain loadingCurtain, IGameFactory gameFactory)
         {
             this.gameStateMachine = gameStateMachine;
             this.sceneLoader = sceneLoader;
             this.loadingCurtain = loadingCurtain;
+            this.gameFactory = gameFactory;
         }
 
         public void Enter(string sceneName)

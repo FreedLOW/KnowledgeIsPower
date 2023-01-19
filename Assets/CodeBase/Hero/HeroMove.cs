@@ -1,10 +1,12 @@
-﻿using CodeBase.Infrastructure;
-using CodeBase.Services.Input;
+﻿using CodeBase.Data;
+using CodeBase.Infrastructure.Services;
+using CodeBase.Infrastructure.Services.Input;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace CodeBase.Hero
 {
-    public class HeroMove : MonoBehaviour
+    public class HeroMove : MonoBehaviour, ISavedProgress
     {
         public CharacterController CharacterController;
         public float movementSpeed;
@@ -14,7 +16,7 @@ namespace CodeBase.Hero
 
         private void Awake()
         {
-            inputService = Game.InputService;
+            inputService = AllServices.Container.Single<IInputService>();
             camera = Camera.main;
         }
 
@@ -34,6 +36,33 @@ namespace CodeBase.Hero
             movementVector += Physics.gravity;
             
             CharacterController.Move(movementVector * movementSpeed * Time.deltaTime);
+        }
+
+        public void LoadProgress(PlayerProgress progress)
+        {
+            progress.WorldData.PositionOnLevel = new PositionOnLevel(CurrentLevel(), transform.position.AsVectorData());
+        }
+
+        public void UpdateProgress(PlayerProgress progress)
+        {
+            if (CurrentLevel() == progress.WorldData.PositionOnLevel.LevelName)
+            {
+                var savedPosition = progress.WorldData.PositionOnLevel.Position;
+                if (savedPosition != null) 
+                    Warp(to: savedPosition);
+            }
+        }
+
+        private void Warp(Vector3Data to)
+        {
+            CharacterController.enabled = false;
+            transform.position = to.AsUnityVector();
+            CharacterController.enabled = true;
+        }
+
+        private static string CurrentLevel()
+        {
+            return SceneManager.GetActiveScene().name;
         }
     }
 }
