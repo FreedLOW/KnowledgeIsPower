@@ -1,6 +1,7 @@
 ﻿using CodeBase.Data;
 using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.Input;
+using CodeBase.Infrastructure.Services.PersistentProgress;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -38,12 +39,12 @@ namespace CodeBase.Hero
             CharacterController.Move(movementVector * movementSpeed * Time.deltaTime);
         }
 
-        public void LoadProgress(PlayerProgress progress)
+        public void UpdateProgress(PlayerProgress progress)
         {
             progress.WorldData.PositionOnLevel = new PositionOnLevel(CurrentLevel(), transform.position.AsVectorData());
         }
 
-        public void UpdateProgress(PlayerProgress progress)
+        public void LoadProgress(PlayerProgress progress)
         {
             if (CurrentLevel() == progress.WorldData.PositionOnLevel.LevelName)
             {
@@ -56,7 +57,7 @@ namespace CodeBase.Hero
         private void Warp(Vector3Data to)
         {
             CharacterController.enabled = false;
-            transform.position = to.AsUnityVector();
+            transform.position = to.AsUnityVector().ToUpY(y: CharacterController.height);
             CharacterController.enabled = true;
         }
 

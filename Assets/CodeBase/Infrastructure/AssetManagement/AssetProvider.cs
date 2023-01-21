@@ -4,10 +4,10 @@ namespace CodeBase.Infrastructure.AssetManagement
 {
     public class AssetProvider : IAssetProvider
     {
-        public void Instantiate(string path)
+        public GameObject Instantiate(string path)
         {
             var prefab = Resources.Load<GameObject>(path);
-            Object.Instantiate(prefab);
+            return Object.Instantiate(prefab);
         }
 
         public GameObject Instantiate(string path, Vector3 at)

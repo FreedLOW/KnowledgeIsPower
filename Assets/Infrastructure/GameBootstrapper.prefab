@@ -43,3 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 838825dff7e3e11458b28cb673eb76bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LoadingCurtainPrefab: {fileID: 6833323202218504574, guid: d7eec214682430a4a88eb308903fb48b,
+    type: 3}
