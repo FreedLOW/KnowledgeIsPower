@@ -1,5 +1,5 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
+using CodeBase.Hero;
 using CodeBase.Infrastructure.Factory;
 using CodeBase.Infrastructure.Services;
 using UnityEngine;
@@ -14,6 +14,7 @@ namespace CodeBase.Enemy
         public float attackCooldown = 3f;
         public float attackRadius;
         public float effectiveDistance;
+        public float damageToHero;
 
         private IGameFactory gameFactory;
         private Transform playerTransform;
@@ -22,7 +23,7 @@ namespace CodeBase.Enemy
         private bool isAttacking;
         private int playerLayerMask;
         private Collider[] hits = new Collider[1];  // since the intersection will only be with player, set the array size to 1
-        private bool attackIsACtive;
+        private bool attackIsActive;
 
         private void Awake()
         {
@@ -45,6 +46,7 @@ namespace CodeBase.Enemy
             if (Hit(out Collider hit))
             {
                 PhysicsDebug.DrawDebug(AttackPointPosition(), attackRadius, 2f);
+                hit.GetComponent<HeroHealth>().TakeDamage(damageToHero);
             }
         }
 
@@ -55,10 +57,10 @@ namespace CodeBase.Enemy
         }
 
         public void EnableAttack() => 
-            attackIsACtive = true;
+            attackIsActive = true;
 
         public void DisableAttack() => 
-            attackIsACtive = false;
+            attackIsActive = false;
 
         private void OnDrawGizmos()
         {
@@ -85,7 +87,7 @@ namespace CodeBase.Enemy
         }
 
         private bool CanAttack() => 
-            attackIsACtive && CooldownIsUp() && !isAttacking;
+            attackIsActive && CooldownIsUp() && !isAttacking;
 
         private bool CooldownIsUp() => 
             currentAttackCooldown <= 0f;
