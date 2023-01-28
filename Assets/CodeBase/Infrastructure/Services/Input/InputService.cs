@@ -6,7 +6,8 @@ namespace CodeBase.Infrastructure.Services.Input
     {
         protected const string Vertical = "Vertical";
         protected const string Horizontal = "Horizontal";
-        protected const string Button = "Fire";
+        private const string Button = "Fire1";
+        
         public abstract Vector2 Axis { get; }
 
         public bool IsAttackButtonUp() => SimpleInput.GetButtonUp(Button);
