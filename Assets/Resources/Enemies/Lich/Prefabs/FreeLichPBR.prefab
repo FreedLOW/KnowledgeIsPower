@@ -525,7 +525,8 @@ MonoBehaviour:
   enemyAnimator: {fileID: 5164399674633800472}
   attackCooldown: 3
   attackRadius: 0.5
-  effectiveDistance: 0.5
+  effectiveDistance: 0.75
+  damageToHero: 10
 --- !u!114 &8277150153474134726
 MonoBehaviour:
   m_ObjectHideFlags: 0

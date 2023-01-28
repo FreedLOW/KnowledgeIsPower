@@ -1,28 +1,29 @@
 ﻿using System;
 using CodeBase.Data;
 using CodeBase.Infrastructure.Services.PersistentProgress;
+using CodeBase.Logic;
 using UnityEngine;
 
 namespace CodeBase.Hero
 {
     [RequireComponent(typeof(HeroAnimator))]
-    public class HeroHealth : MonoBehaviour, ISavedProgress
+    public class HeroHealth : MonoBehaviour, IHealth, ISavedProgress
     {
         public HeroAnimator heroAnimator;
 
         private State heroState;
 
-        public float MaxHeroHP
+        public float MaxHP
         {
             get => heroState.MaxHP;
             set => heroState.MaxHP = value;
         }
-        public float CurrentHeroHP
+        public float CurrentHP
         {
             get => heroState.CurrentHP;
             set
             {
-                if (CurrentHeroHP != value)
+                if (CurrentHP != value)
                 {
                     heroState.CurrentHP = value;
                     OnHealthChanged?.Invoke();
@@ -30,7 +31,7 @@ namespace CodeBase.Hero
             }
         }
 
-        public Action OnHealthChanged;
+        public event Action OnHealthChanged;
 
         public void LoadProgress(PlayerProgress progress)
         {
@@ -40,15 +41,15 @@ namespace CodeBase.Hero
 
         public void UpdateProgress(PlayerProgress progress)
         {
-            progress.HeroState.MaxHP = MaxHeroHP;
-            progress.HeroState.CurrentHP = CurrentHeroHP;
+            progress.HeroState.MaxHP = MaxHP;
+            progress.HeroState.CurrentHP = CurrentHP;
         }
 
         public void TakeDamage(float damage)
         {
-            if (CurrentHeroHP <= 0) return;
+            if (CurrentHP <= 0) return;
 
-            CurrentHeroHP -= damage;
+            CurrentHP -= damage;
             heroAnimator.PlayHit();
         }
     }

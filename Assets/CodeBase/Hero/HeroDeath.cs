@@ -8,6 +8,7 @@ namespace CodeBase.Hero
         public HeroHealth heroHealth;
         public HeroMove heroMove;
         public HeroAnimator heroAnimator;
+        public HeroAttack heroAttack;
 
         public GameObject deathVFX;
         
@@ -15,12 +16,17 @@ namespace CodeBase.Hero
 
         private void Start()
         {
-            heroHealth.OnHealthChanged+= OnHealthChanged;
+            heroHealth.OnHealthChanged += OnHealthChanged;
+        }
+
+        private void OnDestroy()
+        {
+            heroHealth.OnHealthChanged -= OnHealthChanged;
         }
 
         private void OnHealthChanged()
         {
-            if (!isDead && heroHealth.CurrentHeroHP <= 0) 
+            if (!isDead && heroHealth.CurrentHP <= 0) 
                 Die();
         }
 
@@ -28,6 +34,7 @@ namespace CodeBase.Hero
         {
             isDead = true;
             heroMove.enabled = false;
+            heroAttack.enabled = false;
             heroAnimator.PlayDeath();
             Instantiate(deathVFX, transform.position, Quaternion.identity);
         }
