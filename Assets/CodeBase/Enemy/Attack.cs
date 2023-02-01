@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using CodeBase.Hero;
 using CodeBase.Infrastructure.Factory;
 using CodeBase.Infrastructure.Services;
 using CodeBase.Logic;
@@ -42,6 +41,9 @@ namespace CodeBase.Enemy
                 StartAttack();
         }
 
+        /// <summary>
+        /// Unity animation event callback
+        /// </summary>
         private void OnAttack()
         {
             if (Hit(out Collider hit))
@@ -51,6 +53,9 @@ namespace CodeBase.Enemy
             }
         }
 
+        /// <summary>
+        /// Unity animation event callback
+        /// </summary>
         private void OnFinishAttack()
         {
             currentAttackCooldown = attackCooldown;

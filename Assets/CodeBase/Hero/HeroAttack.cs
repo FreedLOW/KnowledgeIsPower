@@ -32,6 +32,9 @@ namespace CodeBase.Hero
                 heroAnimator.PlayAttack();
         }
 
+         /// <summary>
+        /// Unity animation event callback 
+        /// </summary>
         private void OnAttack()
         {
             for (int i = 0; i < Hit(); i++)
