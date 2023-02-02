@@ -37,21 +37,7 @@ namespace CodeBase.Infrastructure.Factory
             ProgressesWriters.Clear();
         }
 
-        private GameObject InstantiateRegister(string prefabPath, Vector3 at)
-        {
-            var gameObject = assetProvider.Instantiate(prefabPath, at: at);
-            RegisterProgressWatchers(gameObject);
-            return gameObject;
-        }
-        
-        private GameObject InstantiateRegister(string prefabPath)
-        {
-            var gameObject = assetProvider.Instantiate(prefabPath);
-            RegisterProgressWatchers(gameObject);
-            return gameObject;
-        }
-
-        private void RegisterProgressWatchers(GameObject gameObject)
+        public void RegisterProgressWatchers(GameObject gameObject)
         {
             foreach (ISavedProgressReader progressReader in gameObject.GetComponentsInChildren<ISavedProgressReader>())
             {
@@ -59,12 +45,26 @@ namespace CodeBase.Infrastructure.Factory
             }
         }
 
-        private void RegisterProgressReader(ISavedProgressReader progressReader)
+        public void RegisterProgressReader(ISavedProgressReader progressReader)
         {
             if (progressReader is ISavedProgress progressWriter)
                 ProgressesWriters.Add(progressWriter);
             
             ProgressReaders.Add(progressReader);
+        }
+
+        private GameObject InstantiateRegister(string prefabPath, Vector3 at)
+        {
+            var gameObject = assetProvider.Instantiate(prefabPath, at: at);
+            RegisterProgressWatchers(gameObject);
+            return gameObject;
+        }
+
+        private GameObject InstantiateRegister(string prefabPath)
+        {
+            var gameObject = assetProvider.Instantiate(prefabPath);
+            RegisterProgressWatchers(gameObject);
+            return gameObject;
         }
     }
 }

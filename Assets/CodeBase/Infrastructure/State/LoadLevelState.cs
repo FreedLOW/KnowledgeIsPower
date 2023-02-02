@@ -2,6 +2,7 @@
 using CodeBase.Hero;
 using CodeBase.Infrastructure.Factory;
 using CodeBase.Infrastructure.Services.PersistentProgress;
+using CodeBase.Logic;
 using CodeBase.UI;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ namespace CodeBase.Infrastructure.State
     public class LoadLevelState : IPayloadedState<string>
     {
         private const string InitialPointTag = "InitialPoint";
+        private const string EnemySpawnerTag = "EnemySpawner";
 
         private readonly GameStateMachine gameStateMachine;
         private readonly SceneLoader sceneLoader;
@@ -54,9 +56,20 @@ namespace CodeBase.Infrastructure.State
 
         private void InitGameWorld()
         {
+            InitializeSpawners();
+            
             var hero = gameFactory.CreateHero(at: GameObject.FindWithTag(InitialPointTag));
             CameraFollow(hero);
             InitializeHUD(hero);
+        }
+
+        private void InitializeSpawners()
+        {
+            foreach (GameObject spawnObject in GameObject.FindGameObjectsWithTag(EnemySpawnerTag))
+            {
+                var spawner = spawnObject.GetComponent<EnemySpawner>();
+                gameFactory.RegisterProgressReader(spawner);
+            }
         }
 
         private void InitializeHUD(GameObject hero)
