@@ -694,7 +694,7 @@ PrefabInstance:
     - target: {fileID: 9129467036515640980, guid: 9ac76efa52b0de74ebe70e1069ed9daf,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.08
+      value: 5.09
       objectReference: {fileID: 0}
     - target: {fileID: 9129467036515640980, guid: 9ac76efa52b0de74ebe70e1069ed9daf,
         type: 3}
@@ -704,7 +704,7 @@ PrefabInstance:
     - target: {fileID: 9129467036515640980, guid: 9ac76efa52b0de74ebe70e1069ed9daf,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.12
+      value: 4.62
       objectReference: {fileID: 0}
     - target: {fileID: 9129467036515640980, guid: 9ac76efa52b0de74ebe70e1069ed9daf,
         type: 3}
@@ -810,6 +810,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4396783884268499761, guid: 21df8b9b21a2b814c97dfb6c780b3a2f,
+        type: 3}
+      propertyPath: monsterTypeId
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4396783884268499762, guid: 21df8b9b21a2b814c97dfb6c780b3a2f,
         type: 3}
       propertyPath: m_Name
@@ -883,6 +888,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4396783884268499761, guid: 21df8b9b21a2b814c97dfb6c780b3a2f,
+        type: 3}
+      propertyPath: monsterTypeId
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4396783884268499762, guid: 21df8b9b21a2b814c97dfb6c780b3a2f,
         type: 3}

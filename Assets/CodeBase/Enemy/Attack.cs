@@ -1,6 +1,4 @@
 ﻿using System.Linq;
-using CodeBase.Infrastructure.Factory;
-using CodeBase.Infrastructure.Services;
 using CodeBase.Logic;
 using UnityEngine;
 
@@ -15,8 +13,7 @@ namespace CodeBase.Enemy
         public float attackRadius;
         public float effectiveDistance;
         public float damageToHero;
-
-        private IGameFactory gameFactory;
+        
         private Transform playerTransform;
 
         private float currentAttackCooldown;
@@ -25,12 +22,14 @@ namespace CodeBase.Enemy
         private Collider[] hits = new Collider[1];  // since the intersection will only be with player, set the array size to 1
         private bool attackIsActive;
 
+        public void Construct(Transform heroTransform)
+        {
+            playerTransform = heroTransform;
+        }
+
         private void Awake()
         {
             playerLayerMask = 1 << LayerMask.NameToLayer("Player");
-            
-            gameFactory = AllServices.Container.Single<IGameFactory>();
-            gameFactory.HeroCreated += OnHeroCreated;
         }
 
         private void Update()
@@ -104,8 +103,5 @@ namespace CodeBase.Enemy
             enemyAnimator.PlayAttack();
             isAttacking = true;
         }
-
-        private void OnHeroCreated() => 
-            playerTransform = gameFactory.HeroGameObject.transform;
     }
 }

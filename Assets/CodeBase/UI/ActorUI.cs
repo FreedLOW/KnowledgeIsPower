@@ -9,6 +9,12 @@ namespace CodeBase.UI
 
         private IHealth health;
 
+        public void Construct(IHealth health)
+        {
+            this.health = health;
+            this.health.OnHealthChanged += UpdateHPBar;
+        }
+
         private void Start()
         {
             IHealth health = GetComponent<IHealth>();
@@ -20,12 +26,6 @@ namespace CodeBase.UI
         private void OnDestroy()
         {
             health.OnHealthChanged -= UpdateHPBar;
-        }
-
-        public void Construct(IHealth health)
-        {
-            this.health = health;
-            this.health.OnHealthChanged += UpdateHPBar;
         }
 
         private void UpdateHPBar()
