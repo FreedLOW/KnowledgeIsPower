@@ -17,6 +17,8 @@ MonoBehaviour:
   MaxHP: 10
   Damage: 10
   AttackCooldown: 3
+  MinMoneyLoot: 3
+  MaxMoneyLoot: 10
   AttackRadius: 0.5
   EffectiveDistance: 0.75
   Prefab: {fileID: 5261016488348296696, guid: fef8ee76ba818f84b81b11da6bda5ddf, type: 3}

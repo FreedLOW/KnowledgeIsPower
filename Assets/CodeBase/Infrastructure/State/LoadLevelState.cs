@@ -1,4 +1,6 @@
 ﻿using CodeBase.CameraLogic;
+using CodeBase.Data;
+using CodeBase.Enemy;
 using CodeBase.Hero;
 using CodeBase.Infrastructure.Factory;
 using CodeBase.Infrastructure.Services.PersistentProgress;
@@ -57,10 +59,26 @@ namespace CodeBase.Infrastructure.State
         private void InitGameWorld()
         {
             InitializeSpawners();
+            InitializeLootsSpawner();
             
             var hero = gameFactory.CreateHero(at: GameObject.FindWithTag(InitialPointTag));
             CameraFollow(hero);
             InitializeHUD(hero);
+        }
+
+        private void InitializeLootsSpawner()
+        {
+            if (progressService.PlayerProgress.LeftLoot.IdLeftLoots.Count <= 0) return;
+
+            for (var i = 0; i < progressService.PlayerProgress.LeftLoot.IdLeftLoots.Count; i++)
+            {
+                LootPiece lootPiece = gameFactory.CreateLoot();
+                Vector3Data lootPosition = progressService.PlayerProgress.LeftLoot.Loots[i].Position;
+                lootPiece.transform.position = lootPosition.AsUnityVector();
+                lootPiece.SetId(progressService.PlayerProgress.LeftLoot.IdLeftLoots[i]);
+                lootPiece.Initialize(progressService.PlayerProgress.LeftLoot.Loots[i]);
+                gameFactory.RegisterProgressReader(lootPiece);
+            }
         }
 
         private void InitializeSpawners()
