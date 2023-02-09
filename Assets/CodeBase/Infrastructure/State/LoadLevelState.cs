@@ -1,34 +1,36 @@
 ﻿using CodeBase.CameraLogic;
 using CodeBase.Data;
-using CodeBase.Enemy;
 using CodeBase.Hero;
 using CodeBase.Infrastructure.Factory;
+using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.PersistentProgress;
-using CodeBase.Logic;
+using CodeBase.StaticData;
 using CodeBase.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace CodeBase.Infrastructure.State
 {
     public class LoadLevelState : IPayloadedState<string>
     {
         private const string InitialPointTag = "InitialPoint";
-        private const string EnemySpawnerTag = "EnemySpawner";
 
         private readonly GameStateMachine gameStateMachine;
         private readonly SceneLoader sceneLoader;
         private readonly LoadingCurtain loadingCurtain;
         private readonly IGameFactory gameFactory;
         private readonly IPersistentProgressService progressService;
+        private readonly IStaticDataService staticDataService;
 
         public LoadLevelState(GameStateMachine gameStateMachine, SceneLoader sceneLoader, LoadingCurtain loadingCurtain, IGameFactory gameFactory,
-            IPersistentProgressService progressService)
+            IPersistentProgressService progressService, IStaticDataService staticDataService)
         {
             this.gameStateMachine = gameStateMachine;
             this.sceneLoader = sceneLoader;
             this.loadingCurtain = loadingCurtain;
             this.gameFactory = gameFactory;
             this.progressService = progressService;
+            this.staticDataService = staticDataService;
         }
 
         public void Enter(string sceneName)
@@ -59,34 +61,32 @@ namespace CodeBase.Infrastructure.State
         private void InitGameWorld()
         {
             InitializeSpawners();
-            InitializeLootsSpawner();
+            InitializeLeftLootsSpawner();
             
             var hero = gameFactory.CreateHero(at: GameObject.FindWithTag(InitialPointTag));
             CameraFollow(hero);
             InitializeHUD(hero);
         }
 
-        private void InitializeLootsSpawner()
+        private void InitializeSpawners()
+        {
+            string sceneKey = SceneManager.GetActiveScene().name;
+            LevelStaticData levelData = staticDataService.ForLevel(sceneKey);
+            foreach (EnemySpawnerData spawnerData in levelData.EnemySpawners)
+            {
+                gameFactory.CreateSpawner(spawnerData.Position, spawnerData.Id, spawnerData.MonsterTypeId);
+            }
+        }
+
+        private void InitializeLeftLootsSpawner()
         {
             if (progressService.PlayerProgress.LeftLoot.IdLeftLoots.Count <= 0) return;
 
             for (var i = 0; i < progressService.PlayerProgress.LeftLoot.IdLeftLoots.Count; i++)
             {
-                LootPiece lootPiece = gameFactory.CreateLoot();
-                Vector3Data lootPosition = progressService.PlayerProgress.LeftLoot.Loots[i].Position;
-                lootPiece.transform.position = lootPosition.AsUnityVector();
-                lootPiece.SetId(progressService.PlayerProgress.LeftLoot.IdLeftLoots[i]);
-                lootPiece.Initialize(progressService.PlayerProgress.LeftLoot.Loots[i]);
-                gameFactory.RegisterProgressReader(lootPiece);
-            }
-        }
-
-        private void InitializeSpawners()
-        {
-            foreach (GameObject spawnObject in GameObject.FindGameObjectsWithTag(EnemySpawnerTag))
-            {
-                var spawner = spawnObject.GetComponent<EnemySpawner>();
-                gameFactory.RegisterProgressReader(spawner);
+                Loot leftLoot = progressService.PlayerProgress.LeftLoot.Loots[i];
+                var leftLootId = progressService.PlayerProgress.LeftLoot.IdLeftLoots[i];
+                gameFactory.CreateLeftLoot(leftLoot, leftLootId);
             }
         }
 

@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using CodeBase.Data;
 using CodeBase.Enemy;
 using CodeBase.Infrastructure.AssetManagement;
 using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.PersistentProgress;
 using CodeBase.Logic;
+using CodeBase.Logic.EnemySpawners;
 using CodeBase.StaticData;
 using CodeBase.UI;
 using UnityEngine;
@@ -82,13 +84,31 @@ namespace CodeBase.Infrastructure.Factory
             return lootPiece;
         }
 
+        public void CreateSpawner(Vector3 at, string spawnId, MonsterTypeId monsterTypeId)
+        {
+            var spawner = InstantiateRegister(AssetsPath.SpawnPath, at).GetComponent<SpawnPoint>();
+
+            spawner.Construct(this);
+            spawner.monsterTypeId = monsterTypeId;
+            spawner.Id = spawnId;
+        }
+
+        public void CreateLeftLoot(Loot leftLoot, string leftLootId)
+        {
+            LootPiece lootPiece = CreateLoot();
+            lootPiece.transform.position = leftLoot.Position.AsUnityVector();
+            lootPiece.SetId(leftLootId);
+            lootPiece.Initialize(leftLoot);
+            RegisterProgressReader(lootPiece);
+        }
+
         public void Cleanup()
         {
             ProgressReaders.Clear();
             ProgressesWriters.Clear();
         }
 
-        public void RegisterProgressWatchers(GameObject gameObject)
+        private void RegisterProgressWatchers(GameObject gameObject)
         {
             foreach (ISavedProgressReader progressReader in gameObject.GetComponentsInChildren<ISavedProgressReader>())
             {
@@ -96,7 +116,7 @@ namespace CodeBase.Infrastructure.Factory
             }
         }
 
-        public void RegisterProgressReader(ISavedProgressReader progressReader)
+        private void RegisterProgressReader(ISavedProgressReader progressReader)
         {
             if (progressReader is ISavedProgress progressWriter)
                 ProgressesWriters.Add(progressWriter);
