@@ -12,5 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91e463af33a14a33ab3f32c11484033a, type: 3}
   m_Name: Graveyard
   m_EditorClassIdentifier: 
-  LevelKey: 
-  EnemySpawners: []
+  LevelKey: Main
+  EnemySpawners:
+  - Id: Main_6b59edca-de46-47dc-b8e3-e63579878b7a
+    MonsterTypeId: 0
+    Position: {x: -14.94, y: 0.63, z: -4.49}
+  - Id: Main_8cfc67be-394e-4478-9b3b-74e1ca656115
+    MonsterTypeId: 0
+    Position: {x: 0.62, y: 0, z: 10.84}
+  - Id: Main_d90f8e08-506c-449d-95fd-05a6d31d4371
+    MonsterTypeId: 1
+    Position: {x: 10.67, y: 0, z: 2.53}
+  - Id: Main_5ccdb96d-8147-4ec5-baa1-4d97993e0920
+    MonsterTypeId: 1
+    Position: {x: -5.22, y: 0, z: 1.88}
+  - Id: Main_ee2c6b7c-911a-4986-af20-026bde91dbbd
+    MonsterTypeId: 0
+    Position: {x: -7.67, y: 0, z: -6.98}
+  - Id: Main_14537173-24e6-4ba7-ab72-fd1cb1a61b32
+    MonsterTypeId: 1
+    Position: {x: -11.62, y: 0, z: -15.23}
+  - Id: Main_1ee8f225-1412-4745-b47a-8dd23f82a3c2
+    MonsterTypeId: 0
+    Position: {x: 1.89, y: 0, z: -14.68}

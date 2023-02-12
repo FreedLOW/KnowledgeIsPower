@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using CodeBase.Data;
 using CodeBase.Infrastructure.Services.PersistentProgress;
 using CodeBase.Logic;
@@ -40,19 +41,6 @@ namespace CodeBase.Enemy
             Pickup();
         }
 
-        private void Pickup()
-        {
-            if (isPicked) return;
-            
-            isPicked = true;
-
-            UpdateWorldData();
-            HideLootObject();
-            PlayPickupFx();
-            ShowLootText();
-            StartCoroutine(DestroyTimer());
-        }
-
         public void LoadProgress(PlayerProgress progress)
         {
             SetProgress(progress);
@@ -64,9 +52,22 @@ namespace CodeBase.Enemy
             
             if (isPicked || IsLootExist()) return;
 
-            SetId(GetComponent<UniqueId>().uniqueId);
+            SetId(GenerateId());
             progress.LeftLoot.IdLeftLoots.Add(id);
             progress.LeftLoot.Loots.Add(loot);
+        }
+
+        private void Pickup()
+        {
+            if (isPicked) return;
+            
+            isPicked = true;
+
+            UpdateWorldData();
+            HideLootObject();
+            PlayPickupFx();
+            ShowLootText();
+            StartCoroutine(DestroyTimer());
         }
 
         private void SetProgress(PlayerProgress progress)
@@ -111,5 +112,8 @@ namespace CodeBase.Enemy
         private bool IsLootExist() =>
             playerProgress.LeftLoot.IdLeftLoots.Count > 0 &&
             playerProgress.LeftLoot.IdLeftLoots.Contains(id);
+
+        private string GenerateId() => 
+            $"{gameObject.scene.name}_{Guid.NewGuid().ToString()}";
     }
 }

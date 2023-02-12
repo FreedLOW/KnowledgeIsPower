@@ -35,8 +35,8 @@ namespace CodeBase.Editor
         {
             uniqueId.uniqueId = $"{uniqueId.gameObject.scene.name}_{Guid.NewGuid().ToString()}";
 
-            EditorUtility.SetDirty(uniqueId);
             if (Application.isPlaying) return;
+            EditorUtility.SetDirty(uniqueId);
             EditorSceneManager.MarkSceneDirty(uniqueId.gameObject.scene);
         }
     }
