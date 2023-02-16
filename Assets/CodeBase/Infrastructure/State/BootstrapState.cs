@@ -5,6 +5,8 @@ using CodeBase.Infrastructure.Services.Input;
 using CodeBase.Infrastructure.Services.PersistentProgress;
 using CodeBase.Infrastructure.Services.SaveLoad;
 using CodeBase.StaticData;
+using CodeBase.UI.Services.Factory;
+using CodeBase.UI.Services.Windows;
 using UnityEngine;
 
 namespace CodeBase.Infrastructure.State
@@ -43,12 +45,28 @@ namespace CodeBase.Infrastructure.State
         private void RegisterServices()
         {
             RegisterStaticDataService();
+            
             allServices.RegisterSingle(InputService());
+            
             allServices.RegisterSingle<IAssetProvider>(new AssetProvider());
-            IRandomService randomService = new UnityRandomService();
+            
+            allServices.RegisterSingle<IRandomService>(new UnityRandomService());
+            
             allServices.RegisterSingle<IPersistentProgressService>(new PersistentProgressService());
-            allServices.RegisterSingle<IGameFactory>(new GameFactory(allServices.Single<IAssetProvider>(), 
-                allServices.Single<IStaticDataService>(), randomService, allServices.Single<IPersistentProgressService>()));
+            
+            allServices.RegisterSingle<IUIFactory>(new UIFactory(allServices.Single<IAssetProvider>(), 
+                allServices.Single<IStaticDataService>(),
+                allServices.Single<IPersistentProgressService>()));
+            
+            allServices.RegisterSingle<IWindowService>(new WindowService(allServices.Single<IUIFactory>()));
+            
+            allServices.RegisterSingle<IGameFactory>(new GameFactory(
+                allServices.Single<IAssetProvider>(), 
+                allServices.Single<IStaticDataService>(), 
+                allServices.Single<IRandomService>(), 
+                allServices.Single<IPersistentProgressService>(),
+                allServices.Single<IWindowService>()));
+            
             allServices.RegisterSingle<ISaveLoadService>(new SaveLoadService(allServices.Single<IGameFactory>(),
                 allServices.Single<IPersistentProgressService>()));
         }
