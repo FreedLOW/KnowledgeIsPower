@@ -4,6 +4,7 @@ using CodeBase.Hero;
 using CodeBase.Infrastructure.Factory;
 using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.PersistentProgress;
+using CodeBase.Logic;
 using CodeBase.StaticData;
 using CodeBase.UI.Elements;
 using CodeBase.UI.Services.Factory;
@@ -14,8 +15,6 @@ namespace CodeBase.Infrastructure.State
 {
     public class LoadLevelState : IPayloadedState<string>
     {
-        private const string InitialPointTag = "InitialPoint";
-
         private readonly GameStateMachine gameStateMachine;
         private readonly SceneLoader sceneLoader;
         private readonly LoadingCurtain loadingCurtain;
@@ -67,18 +66,23 @@ namespace CodeBase.Infrastructure.State
 
         private void InitGameWorld()
         {
-            InitializeSpawners();
+            LevelStaticData levelData = LevelStaticData();
+
+            InitializeSpawners(levelData);
             InitializeLeftLootsSpawner();
             
-            var hero = gameFactory.CreateHero(at: GameObject.FindWithTag(InitialPointTag));
+            GameObject hero = InitializeHero(levelData);
             CameraFollow(hero);
             InitializeHUD(hero);
+
+            InitializeTransferTrigger(levelData);
         }
 
-        private void InitializeSpawners()
+        private LevelStaticData LevelStaticData() => 
+            staticDataService.ForLevel(SceneManager.GetActiveScene().name);
+
+        private void InitializeSpawners(LevelStaticData levelData)
         {
-            string sceneKey = SceneManager.GetActiveScene().name;
-            LevelStaticData levelData = staticDataService.ForLevel(sceneKey);
             foreach (EnemySpawnerData spawnerData in levelData.EnemySpawners)
             {
                 gameFactory.CreateSpawner(spawnerData.Position, spawnerData.Id, spawnerData.MonsterTypeId);
@@ -97,6 +101,9 @@ namespace CodeBase.Infrastructure.State
             }
         }
 
+        private GameObject InitializeHero(LevelStaticData levelData) => 
+            gameFactory.CreateHero(levelData.InitialHeroPosition);
+
         private void InitializeHUD(GameObject hero)
         {
             GameObject hud = gameFactory.CreateHud();
@@ -106,5 +113,11 @@ namespace CodeBase.Infrastructure.State
 
         private void CameraFollow(GameObject follower) => 
             Camera.main.GetComponent<CameraFollow>().Follow(follower);
+
+        private void InitializeTransferTrigger(LevelStaticData levelData)
+        {
+            LevelTransferTrigger transferTrigger = gameFactory.CreateLevelTransferTrigger(levelData.TransferTriggerPosition);
+            transferTrigger.Construct(gameStateMachine);
+        }
     }
 }

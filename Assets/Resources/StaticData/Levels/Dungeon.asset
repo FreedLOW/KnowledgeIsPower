@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91e463af33a14a33ab3f32c11484033a, type: 3}
+  m_Name: Dungeon
+  m_EditorClassIdentifier: 
+  LevelKey: Dungeon
+  EnemySpawners:
+  - Id: Dungeon_4282d780-8486-4762-92be-00bb566a0e41
+    MonsterTypeId: 1
+    Position: {x: 21.89, y: 7.624, z: 29.68}
+  - Id: Dungeon_2fed4f7d-84c8-4946-83bf-9b7781a72b98
+    MonsterTypeId: 0
+    Position: {x: 6.29, y: 1.11, z: 38.03}
+  - Id: Dungeon_eba48235-963f-471b-afd5-b7186c4dedf7
+    MonsterTypeId: 0
+    Position: {x: -3.29, y: 0.06747866, z: -7.37}
+  - Id: Dungeon_cc569889-8008-465f-97ba-f8745b489a29
+    MonsterTypeId: 0
+    Position: {x: -3.29, y: 0.06747866, z: 7.86}
+  - Id: Dungeon_8eddba8f-f400-4dd2-abf7-fb503771c430
+    MonsterTypeId: 1
+    Position: {x: -4.1, y: 0.06747866, z: 26.48}
+  InitialHeroPosition: {x: -4.6, y: 0.26, z: -18.6}
+  TransferTriggerPosition: {x: 24.819, y: 8.49, z: 26.417}

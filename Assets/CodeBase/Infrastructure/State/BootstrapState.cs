@@ -45,6 +45,8 @@ namespace CodeBase.Infrastructure.State
 
         private void RegisterServices()
         {
+            allServices.RegisterSingle<IGameStateMachine>(gameStateMachine);
+            
             RegisterStaticDataService();
 
             RegisterAdsService();

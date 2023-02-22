@@ -8,7 +8,7 @@ using CodeBase.UI.Services.Factory;
 
 namespace CodeBase.Infrastructure.State
 {
-    public class GameStateMachine
+    public class GameStateMachine : IGameStateMachine
     {
         private readonly Dictionary<Type, IExitableState> states;
         private IExitableState activeState;

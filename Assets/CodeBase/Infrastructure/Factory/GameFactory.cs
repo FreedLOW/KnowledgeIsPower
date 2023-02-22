@@ -7,7 +7,6 @@ using CodeBase.Infrastructure.Services.PersistentProgress;
 using CodeBase.Logic;
 using CodeBase.Logic.EnemySpawners;
 using CodeBase.StaticData;
-using CodeBase.UI;
 using CodeBase.UI.Elements;
 using CodeBase.UI.Services.Windows;
 using UnityEngine;
@@ -38,9 +37,9 @@ namespace CodeBase.Infrastructure.Factory
             this.windowService = windowService;
         }
 
-        public GameObject CreateHero(GameObject at)
+        public GameObject CreateHero(Vector3 at)
         {
-            HeroGameObject = InstantiateRegister(prefabPath: AssetsPath.HeroPath, at: at.transform.position);
+            HeroGameObject = InstantiateRegister(prefabPath: AssetsPath.HeroPath, at);
             return HeroGameObject;
         }
 
@@ -111,6 +110,10 @@ namespace CodeBase.Infrastructure.Factory
             lootPiece.Initialize(leftLoot);
             RegisterProgressReader(lootPiece);
         }
+
+        public LevelTransferTrigger CreateLevelTransferTrigger(Vector3 at) =>
+            InstantiateRegister(AssetsPath.LevelTransferPath, at)
+                .GetComponent<LevelTransferTrigger>();
 
         public void Cleanup()
         {

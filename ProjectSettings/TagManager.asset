@@ -10,6 +10,7 @@ TagManager:
   - FxTemporaire
   - InitialPoint
   - LoadingCurtain
+  - LevelTransfer
   layers:
   - Default
   - TransparentFX
