@@ -1,9 +1,10 @@
 ﻿using CodeBase.Infrastructure.AssetManagement;
 using CodeBase.Infrastructure.Services;
+using CodeBase.Infrastructure.Services.Ads;
 using CodeBase.Infrastructure.Services.PersistentProgress;
 using CodeBase.StaticData.Windows;
 using CodeBase.UI.Services.Windows;
-using CodeBase.UI.Windows;
+using CodeBase.UI.Windows.Shop;
 using UnityEngine;
 
 namespace CodeBase.UI.Services.Factory
@@ -13,21 +14,24 @@ namespace CodeBase.UI.Services.Factory
         private readonly IAssetProvider assets;
         private readonly IStaticDataService staticData;
         private readonly IPersistentProgressService progressService;
+        private readonly IAdsService adsService;
 
         private Transform uiRoot;
 
-        public UIFactory(IAssetProvider assets, IStaticDataService staticData, IPersistentProgressService progressService)
+        public UIFactory(IAssetProvider assets, IStaticDataService staticData, 
+            IPersistentProgressService progressService, IAdsService adsService)
         {
             this.assets = assets;
             this.staticData = staticData;
             this.progressService = progressService;
+            this.adsService = adsService;
         }
 
         public void CreateShop()
         {
             WindowConfig config = staticData.ForWindow(WindowId.Shop);
-            WindowBase window = Object.Instantiate(config.Prefab, uiRoot);
-            window.Construct(progressService);
+            ShopWindow window = Object.Instantiate(config.Prefab, uiRoot) as ShopWindow;
+            window.Construct(progressService, adsService);
         }
 
         public void CreateRoot() => 

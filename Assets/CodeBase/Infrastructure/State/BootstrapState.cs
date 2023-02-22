@@ -1,6 +1,7 @@
 ﻿using CodeBase.Infrastructure.AssetManagement;
 using CodeBase.Infrastructure.Factory;
 using CodeBase.Infrastructure.Services;
+using CodeBase.Infrastructure.Services.Ads;
 using CodeBase.Infrastructure.Services.Input;
 using CodeBase.Infrastructure.Services.PersistentProgress;
 using CodeBase.Infrastructure.Services.SaveLoad;
@@ -45,7 +46,9 @@ namespace CodeBase.Infrastructure.State
         private void RegisterServices()
         {
             RegisterStaticDataService();
-            
+
+            RegisterAdsService();
+
             allServices.RegisterSingle(InputService());
             
             allServices.RegisterSingle<IAssetProvider>(new AssetProvider());
@@ -54,11 +57,14 @@ namespace CodeBase.Infrastructure.State
             
             allServices.RegisterSingle<IPersistentProgressService>(new PersistentProgressService());
             
-            allServices.RegisterSingle<IUIFactory>(new UIFactory(allServices.Single<IAssetProvider>(), 
+            allServices.RegisterSingle<IUIFactory>(new UIFactory(
+                allServices.Single<IAssetProvider>(), 
                 allServices.Single<IStaticDataService>(),
-                allServices.Single<IPersistentProgressService>()));
+                allServices.Single<IPersistentProgressService>(),
+                allServices.Single<IAdsService>()));
             
-            allServices.RegisterSingle<IWindowService>(new WindowService(allServices.Single<IUIFactory>()));
+            allServices.RegisterSingle<IWindowService>(
+                new WindowService(allServices.Single<IUIFactory>()));
             
             allServices.RegisterSingle<IGameFactory>(new GameFactory(
                 allServices.Single<IAssetProvider>(), 
@@ -67,8 +73,16 @@ namespace CodeBase.Infrastructure.State
                 allServices.Single<IPersistentProgressService>(),
                 allServices.Single<IWindowService>()));
             
-            allServices.RegisterSingle<ISaveLoadService>(new SaveLoadService(allServices.Single<IGameFactory>(),
+            allServices.RegisterSingle<ISaveLoadService>(new SaveLoadService(
+                allServices.Single<IGameFactory>(),
                 allServices.Single<IPersistentProgressService>()));
+        }
+
+        private void RegisterAdsService()
+        {
+            var adsService = new AdsService();
+            adsService.Initialize();
+            allServices.RegisterSingle<IAdsService>(adsService);
         }
 
         private void RegisterStaticDataService()
@@ -82,8 +96,8 @@ namespace CodeBase.Infrastructure.State
         {
             if (Application.isEditor)
                 return new StandaloneInputService();
-            else
-                return new MobileInputService();
+            
+            return new MobileInputService();
         }
     }
 }
