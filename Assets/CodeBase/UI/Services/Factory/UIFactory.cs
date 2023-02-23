@@ -1,4 +1,5 @@
-﻿using CodeBase.Infrastructure.AssetManagement;
+﻿using System.Threading.Tasks;
+using CodeBase.Infrastructure.AssetManagement;
 using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.Ads;
 using CodeBase.Infrastructure.Services.PersistentProgress;
@@ -34,7 +35,10 @@ namespace CodeBase.UI.Services.Factory
             window.Construct(progressService, adsService);
         }
 
-        public void CreateRoot() => 
-            uiRoot = assets.Instantiate(AssetsPath.UIRootPath).transform;
+        public async Task CreateRoot()
+        {
+            GameObject root = await assets.Instantiate(AssetsAddress.UIRoot);
+            uiRoot = root.transform;
+        }
     }
 }

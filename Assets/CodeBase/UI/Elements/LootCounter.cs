@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace CodeBase.UI.Elements
 {
-    public class LootCounter : MonoBehaviour, ISavedProgressReader
+    public class LootCounter : MonoBehaviour
     {
         public TextMeshProUGUI CounterText;
         private WorldData worldData;
@@ -14,16 +14,7 @@ namespace CodeBase.UI.Elements
         {
             this.worldData = worldData;
             this.worldData.LootData.Changed += UpdateCounter;
-        }
-
-        private void Start()
-        {
-            UpdateCounter();
-        }
-
-        public void LoadProgress(PlayerProgress progress)
-        {
-            worldData.LootData.Collected = progress.WorldData.LootData.Collected;
+            
             UpdateCounter();
         }
 

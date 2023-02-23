@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace CodeBase.StaticData
 {
@@ -18,6 +19,6 @@ namespace CodeBase.StaticData
         [Range(0.5f, 1f)] public float AttackRadius;
         [Range(0.5f, 1f)] public float EffectiveDistance;
 
-        public GameObject Prefab;
+        public AssetReferenceGameObject PrefabReference;
     }
 }

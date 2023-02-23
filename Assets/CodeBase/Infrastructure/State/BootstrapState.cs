@@ -53,7 +53,7 @@ namespace CodeBase.Infrastructure.State
 
             allServices.RegisterSingle(InputService());
             
-            allServices.RegisterSingle<IAssetProvider>(new AssetProvider());
+            RegisterAssetProvider();
             
             allServices.RegisterSingle<IRandomService>(new UnityRandomService());
             
@@ -78,6 +78,13 @@ namespace CodeBase.Infrastructure.State
             allServices.RegisterSingle<ISaveLoadService>(new SaveLoadService(
                 allServices.Single<IGameFactory>(),
                 allServices.Single<IPersistentProgressService>()));
+        }
+
+        private void RegisterAssetProvider()
+        {
+            var assetProvider = new AssetProvider();
+            assetProvider.Initialize();
+            allServices.RegisterSingle<IAssetProvider>(assetProvider);
         }
 
         private void RegisterAdsService()

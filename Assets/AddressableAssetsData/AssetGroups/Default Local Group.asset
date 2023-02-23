@@ -16,7 +16,71 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: cc18a0f441495494eb7b654798b35904
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: c09d884e7ca40460f91e5b20675d3e94
+    m_Address: IncrediblyFatDragon Variant
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: fef8ee76ba818f84b81b11da6bda5ddf
+    m_Address: Golem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: dec9a201068e23a4e86c71fce058df4f
+    m_Address: Lich
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: d587ba2fd38b20449986c007d26d2b8a
+    m_Address: Loot
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 7880382966684822008, guid: d587ba2fd38b20449986c007d26d2b8a,
+      type: 3}
+    m_TargetAsset: {fileID: 7880382966684822008, guid: d587ba2fd38b20449986c007d26d2b8a,
+      type: 3}
+  - m_GUID: 21df8b9b21a2b814c97dfb6c780b3a2f
+    m_Address: SpawnPoint
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 4396783884268499762, guid: 21df8b9b21a2b814c97dfb6c780b3a2f,
+      type: 3}
+    m_TargetAsset: {fileID: 4396783884268499762, guid: 21df8b9b21a2b814c97dfb6c780b3a2f,
+      type: 3}
+  - m_GUID: f6395af14c6ae2d4ea00c7e97e633ad3
+    m_Address: Hud
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 1198110311400335407, guid: f6395af14c6ae2d4ea00c7e97e633ad3,
+      type: 3}
+    m_TargetAsset: {fileID: 1198110311400335407, guid: f6395af14c6ae2d4ea00c7e97e633ad3,
+      type: 3}
+  - m_GUID: 29f1e4845becc57418a35bda097350f8
+    m_Address: UIRoot
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 1618538892396512050, guid: 29f1e4845becc57418a35bda097350f8,
+      type: 3}
+    m_TargetAsset: {fileID: 1618538892396512050, guid: 29f1e4845becc57418a35bda097350f8,
+      type: 3}
+  - m_GUID: 181862a89f60d7a459002f9870860ad4
+    m_Address: Hero
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 176288, guid: 181862a89f60d7a459002f9870860ad4, type: 3}
+    m_TargetAsset: {fileID: 176288, guid: 181862a89f60d7a459002f9870860ad4, type: 3}
+  - m_GUID: 50110297decd55c46bb14805665258fd
+    m_Address: LevelTransferTrigger
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 6599525654155491236, guid: 50110297decd55c46bb14805665258fd,
+      type: 3}
+    m_TargetAsset: {fileID: 6599525654155491236, guid: 50110297decd55c46bb14805665258fd,
+      type: 3}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 3b97d1cf4cf4dd44092172a395435903, type: 2}
   m_SchemaSet:

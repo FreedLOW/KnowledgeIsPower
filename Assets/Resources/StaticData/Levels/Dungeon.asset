@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelKey: Dungeon
   EnemySpawners:
-  - Id: Dungeon_4282d780-8486-4762-92be-00bb566a0e41
-    MonsterTypeId: 1
-    Position: {x: 21.89, y: 7.624, z: 29.68}
-  - Id: Dungeon_2fed4f7d-84c8-4946-83bf-9b7781a72b98
-    MonsterTypeId: 0
-    Position: {x: 6.29, y: 1.11, z: 38.03}
   - Id: Dungeon_eba48235-963f-471b-afd5-b7186c4dedf7
     MonsterTypeId: 0
     Position: {x: -3.29, y: 0.06747866, z: -7.37}
+  - Id: Dungeon_2fed4f7d-84c8-4946-83bf-9b7781a72b98
+    MonsterTypeId: 0
+    Position: {x: 5.32, y: 1.11, z: 38.88}
+  - Id: Dungeon_4282d780-8486-4762-92be-00bb566a0e41
+    MonsterTypeId: 2
+    Position: {x: 22.96, y: 7.624, z: 28.74}
   - Id: Dungeon_cc569889-8008-465f-97ba-f8745b489a29
     MonsterTypeId: 0
     Position: {x: -3.29, y: 0.06747866, z: 7.86}

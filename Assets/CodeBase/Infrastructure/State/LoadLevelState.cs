@@ -1,4 +1,5 @@
-﻿using CodeBase.CameraLogic;
+﻿using System.Threading.Tasks;
+using CodeBase.CameraLogic;
 using CodeBase.Data;
 using CodeBase.Hero;
 using CodeBase.Infrastructure.Factory;
@@ -38,16 +39,17 @@ namespace CodeBase.Infrastructure.State
         public void Enter(string sceneName)
         {
             loadingCurtain.Show();
-            gameFactory.Cleanup();
+            gameFactory.CleanUp();
+            gameFactory.WarmUp();
             sceneLoader.Load(sceneName, OnLoaded);
         }
         
         public void Exit() => loadingCurtain.Hide();
 
-        private void OnLoaded()
+        private async void OnLoaded()
         {
-            InitUIRoot();
-            InitGameWorld();
+            await InitUIRoot();
+            await InitGameWorld();
             InformProgressReaders();
 
             gameStateMachine.Enter<GameLoopState>();
@@ -61,35 +63,35 @@ namespace CodeBase.Infrastructure.State
             }
         }
 
-        private void InitUIRoot() => 
-            uiFactory.CreateRoot();
+        private async Task InitUIRoot() => 
+            await uiFactory.CreateRoot();
 
-        private void InitGameWorld()
+        private async Task InitGameWorld()
         {
             LevelStaticData levelData = LevelStaticData();
 
-            InitializeSpawners(levelData);
-            InitializeLeftLootsSpawner();
+            await InitializeSpawners(levelData);
+            await InitializeLeftLootsSpawner();
             
-            GameObject hero = InitializeHero(levelData);
+            GameObject hero = await InitializeHero(levelData);
+            await InitializeHUD(hero);
             CameraFollow(hero);
-            InitializeHUD(hero);
 
-            InitializeTransferTrigger(levelData);
+            await InitializeTransferTrigger(levelData);
         }
 
         private LevelStaticData LevelStaticData() => 
             staticDataService.ForLevel(SceneManager.GetActiveScene().name);
 
-        private void InitializeSpawners(LevelStaticData levelData)
+        private async Task InitializeSpawners(LevelStaticData levelData)
         {
             foreach (EnemySpawnerData spawnerData in levelData.EnemySpawners)
             {
-                gameFactory.CreateSpawner(spawnerData.Position, spawnerData.Id, spawnerData.MonsterTypeId);
+                await gameFactory.CreateSpawner(spawnerData.Position, spawnerData.Id, spawnerData.MonsterTypeId);
             }
         }
 
-        private void InitializeLeftLootsSpawner()
+        private async Task InitializeLeftLootsSpawner()
         {
             if (progressService.PlayerProgress.LeftLoot.IdLeftLoots.Count <= 0) return;
 
@@ -97,16 +99,16 @@ namespace CodeBase.Infrastructure.State
             {
                 Loot leftLoot = progressService.PlayerProgress.LeftLoot.Loots[i];
                 var leftLootId = progressService.PlayerProgress.LeftLoot.IdLeftLoots[i];
-                gameFactory.CreateLeftLoot(leftLoot, leftLootId);
+                await gameFactory.CreateLeftLoot(leftLoot, leftLootId);
             }
         }
 
-        private GameObject InitializeHero(LevelStaticData levelData) => 
-            gameFactory.CreateHero(levelData.InitialHeroPosition);
+        private async Task<GameObject> InitializeHero(LevelStaticData levelData) => 
+            await gameFactory.CreateHero(levelData.InitialHeroPosition);
 
-        private void InitializeHUD(GameObject hero)
+        private async Task InitializeHUD(GameObject hero)
         {
-            GameObject hud = gameFactory.CreateHud();
+            GameObject hud = await gameFactory.CreateHud();
             hud.GetComponentInChildren<ActorUI>()
                 .Construct(hero.GetComponent<HeroHealth>());
         }
@@ -114,9 +116,9 @@ namespace CodeBase.Infrastructure.State
         private void CameraFollow(GameObject follower) => 
             Camera.main.GetComponent<CameraFollow>().Follow(follower);
 
-        private void InitializeTransferTrigger(LevelStaticData levelData)
+        private async Task InitializeTransferTrigger(LevelStaticData levelData)
         {
-            LevelTransferTrigger transferTrigger = gameFactory.CreateLevelTransferTrigger(levelData.TransferTriggerPosition);
+            LevelTransferTrigger transferTrigger = await gameFactory.CreateLevelTransferTrigger(levelData.TransferTriggerPosition);
             transferTrigger.Construct(gameStateMachine);
         }
     }

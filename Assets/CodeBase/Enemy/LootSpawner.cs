@@ -26,11 +26,11 @@ namespace CodeBase.Enemy
             enemyDeath.OnEnemyDeath += SpawnLoot;
         }
 
-        private void SpawnLoot()
+        private async void SpawnLoot()
         {
             enemyDeath.OnEnemyDeath -= SpawnLoot;
 
-            LootPiece loot = gameFactory.CreateLoot();
+            LootPiece loot = await gameFactory.CreateLoot();
             loot.transform.position = transform.position;
 
             Loot lootItem = GenerateLootItem();

@@ -21,4 +21,7 @@ MonoBehaviour:
   MaxMoneyLoot: 10
   AttackRadius: 0.5
   EffectiveDistance: 0.75
-  Prefab: {fileID: 5261016488348296696, guid: fef8ee76ba818f84b81b11da6bda5ddf, type: 3}
+  PrefabReference:
+    m_AssetGUID: fef8ee76ba818f84b81b11da6bda5ddf
+    m_SubObjectName: 
+    m_SubObjectType: 
