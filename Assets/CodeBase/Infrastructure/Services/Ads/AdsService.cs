@@ -6,9 +6,9 @@ namespace CodeBase.Infrastructure.Services.Ads
 {
     public class AdsService : IAdsService, IUnityAdsListener
     {
-        private const string AndroidGameId = "";
-        private const string IOSGameId = "";
-        private const string RewardedVideoPlacementId = "";
+        private const string AndroidGameId = "5194044";
+        private const string IOSGameId = "5194045";
+        private const string RewardedVideoPlacementId = "Rewarded_Android";
         
         private string gameId;
         private Action onVideoFinished;

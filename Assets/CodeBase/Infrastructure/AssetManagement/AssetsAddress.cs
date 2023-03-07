@@ -8,5 +8,6 @@
         public const string Spawn = "SpawnPoint";
         public const string UIRoot = "UIRoot";
         public const string LevelTransfer = "LevelTransferTrigger";
+        public const string ShopItem = "ShopItem";
     }
 }
