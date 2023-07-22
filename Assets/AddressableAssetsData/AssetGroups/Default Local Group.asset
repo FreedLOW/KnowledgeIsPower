@@ -69,34 +69,40 @@ MonoBehaviour:
     m_Address: LevelTransferTrigger
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_MainAsset: {fileID: 6599525654155491236, guid: 50110297decd55c46bb14805665258fd,
+      type: 3}
+    m_TargetAsset: {fileID: 6599525654155491236, guid: 50110297decd55c46bb14805665258fd,
+      type: 3}
   - m_GUID: e6ee87c3660ae234b818c4fe26dad8e8
     m_Address: ShopItem
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 8528798605619165520, guid: e6ee87c3660ae234b818c4fe26dad8e8,
-      type: 3}
-    m_TargetAsset: {fileID: 8528798605619165520, guid: e6ee87c3660ae234b818c4fe26dad8e8,
-      type: 3}
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: d0ea2ec653dd331458a02626c7a02955
     m_Address: IAP_Icon_4
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 2800000, guid: d0ea2ec653dd331458a02626c7a02955, type: 3}
-    m_TargetAsset: {fileID: 2800000, guid: d0ea2ec653dd331458a02626c7a02955, type: 3}
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: 53f0a099e5669d345a3f0b7f41c2f8c7
     m_Address: IAP_Icon_14
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 2800000, guid: 53f0a099e5669d345a3f0b7f41c2f8c7, type: 3}
-    m_TargetAsset: {fileID: 2800000, guid: 53f0a099e5669d345a3f0b7f41c2f8c7, type: 3}
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: a938c2dc75e47c7469ce644250a6c8fa
     m_Address: IAP_Icon_5
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 2800000, guid: a938c2dc75e47c7469ce644250a6c8fa, type: 3}
-    m_TargetAsset: {fileID: 2800000, guid: a938c2dc75e47c7469ce644250a6c8fa, type: 3}
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 5de734270eabfca49bc1f81b728ff410
+    m_Address: knightPBRRed
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2100000, guid: 5de734270eabfca49bc1f81b728ff410, type: 2}
+    m_TargetAsset: {fileID: 2100000, guid: 5de734270eabfca49bc1f81b728ff410, type: 2}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 3b97d1cf4cf4dd44092172a395435903, type: 2}
   m_SchemaSet:

@@ -1,0 +1,10 @@
+F:\Unity\KnowledgeIsPower\Dependencies\Dependee\bin\Release\netstandard2.0\Dependee.deps.json
+F:\Unity\KnowledgeIsPower\Dependencies\Dependee\bin\Release\netstandard2.0\Dependee.dll
+F:\Unity\KnowledgeIsPower\Dependencies\Dependee\bin\Release\netstandard2.0\Dependee.pdb
+F:\Unity\KnowledgeIsPower\Dependencies\Dependee\obj\Release\netstandard2.0\Dependee.csproj.AssemblyReference.cache
+F:\Unity\KnowledgeIsPower\Dependencies\Dependee\obj\Release\netstandard2.0\Dependee.GeneratedMSBuildEditorConfig.editorconfig
+F:\Unity\KnowledgeIsPower\Dependencies\Dependee\obj\Release\netstandard2.0\Dependee.AssemblyInfoInputs.cache
+F:\Unity\KnowledgeIsPower\Dependencies\Dependee\obj\Release\netstandard2.0\Dependee.AssemblyInfo.cs
+F:\Unity\KnowledgeIsPower\Dependencies\Dependee\obj\Release\netstandard2.0\Dependee.csproj.CoreCompileInputs.cache
+F:\Unity\KnowledgeIsPower\Dependencies\Dependee\obj\Release\netstandard2.0\Dependee.dll
+F:\Unity\KnowledgeIsPower\Dependencies\Dependee\obj\Release\netstandard2.0\Dependee.pdb

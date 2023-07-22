@@ -70,7 +70,7 @@ namespace CodeBase.Enemy
         private void OnDrawGizmos()
         {
             if (!Hit(out Collider hit)) return;
-            Gizmos.color=Color.magenta;
+            Gizmos.color = Color.magenta;
             Gizmos.DrawSphere(AttackPointPosition(), attackRadius);
         }
 

@@ -2,7 +2,6 @@
 using System.Collections;
 using CodeBase.Data;
 using CodeBase.Infrastructure.Services.PersistentProgress;
-using CodeBase.Logic;
 using TMPro;
 using UnityEngine;
 
@@ -57,7 +56,7 @@ namespace CodeBase.Enemy
             progress.LeftLoot.Loots.Add(loot);
         }
 
-        private void Pickup()
+        public void Pickup()
         {
             if (isPicked) return;
             

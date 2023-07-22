@@ -15,10 +15,8 @@
         public TService Single<TService>() where TService : IService => 
             Implementation<TService>.ServiceInstance;
 
-        public void RemoveSingle<TService>(TService dispose) where TService : IService
-        {
-            
-        }
+        public void RemoveSingle<TService>() where TService : class, IService => 
+            Implementation<TService>.ServiceInstance = null;
 
         private static class Implementation<TService> where TService : IService
         {

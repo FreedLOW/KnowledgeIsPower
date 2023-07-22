@@ -35,14 +35,10 @@ namespace CodeBase.Infrastructure.State
             sceneLoader.Load(SceneName, onSceneLoaded: EnterLoadLevel);
         }
 
-        public void Exit()
-        {
-        }
+        public void Exit() { }
 
-        private void EnterLoadLevel()
-        {
+        private void EnterLoadLevel() => 
             gameStateMachine.Enter<LoadProgressState>();
-        }
 
         private void RegisterServices()
         {

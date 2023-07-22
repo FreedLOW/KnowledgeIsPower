@@ -18,7 +18,7 @@ namespace CodeBase.Enemy
         private readonly int walkStateHash = Animator.StringToHash("Move");
         private readonly int deathStateHash = Animator.StringToHash("die");
 
-        private Animator animator;
+        public Animator animator;
 
         public event Action<AnimatorState> StateEntered;
         public event Action<AnimatorState> StateExited;
