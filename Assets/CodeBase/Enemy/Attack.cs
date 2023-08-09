@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using CodeBase.Logic;
+using CodeBase.StaticData;
 using UnityEngine;
 
 namespace CodeBase.Enemy
@@ -40,6 +41,21 @@ namespace CodeBase.Enemy
                 StartAttack();
         }
 
+        private void OnDrawGizmos()
+        {
+            if (!Hit(out Collider hit)) return;
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawSphere(AttackPointPosition(), attackRadius);
+        }
+
+        public void SetAttackData(MonsterStaticData monsterData)
+        {
+            attackRadius = monsterData.AttackRadius;
+            effectiveDistance = monsterData.EffectiveDistance;
+            damageToHero = monsterData.Damage;
+            attackCooldown = monsterData.AttackCooldown;
+        }
+
         /// <summary>
         /// Unity animation event callback
         /// </summary>
@@ -66,13 +82,6 @@ namespace CodeBase.Enemy
 
         public void DisableAttack() => 
             attackIsActive = false;
-
-        private void OnDrawGizmos()
-        {
-            if (!Hit(out Collider hit)) return;
-            Gizmos.color = Color.magenta;
-            Gizmos.DrawSphere(AttackPointPosition(), attackRadius);
-        }
 
         private bool Hit(out Collider hit)
         {

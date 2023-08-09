@@ -85,11 +85,8 @@ namespace CodeBase.Infrastructure.Factory
 
             var attack = monster.GetComponent<Attack>();
             attack.Construct(HeroGameObject.transform);
-            attack.attackRadius = monsterData.AttackRadius;
-            attack.effectiveDistance = monsterData.EffectiveDistance;
-            attack.damageToHero = monsterData.Damage;
-            attack.attackCooldown = monsterData.AttackCooldown;
-            
+            attack.SetAttackData(monsterData);
+
             return monster;
         }
 
