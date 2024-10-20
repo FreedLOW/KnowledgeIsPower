@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace CodeBase.CameraLogic
 {
@@ -20,10 +19,8 @@ namespace CodeBase.CameraLogic
             transform.position = position;
         }
 
-        public void Follow(GameObject follower)
-        {
+        public void Follow(GameObject follower) => 
             following = follower.transform;
-        }
 
         private Vector3 FollowingPointPosition()
         {

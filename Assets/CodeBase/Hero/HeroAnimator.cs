@@ -31,7 +31,6 @@ namespace CodeBase.Hero
     }
 
     public bool IsAttacking => State == AnimatorState.Attack;
-    
 
     public void PlayHit() => Animator.SetTrigger(HitHash);
     

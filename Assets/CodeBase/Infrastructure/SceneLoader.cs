@@ -7,16 +7,16 @@ namespace CodeBase.Infrastructure
 {
     public class SceneLoader
     {
-        private readonly ICoroutineRunner CorutineRunner;
+        private readonly ICoroutineRunner _coroutineRunner;
 
         public SceneLoader(ICoroutineRunner coroutineRunner)
         {
-            CorutineRunner = coroutineRunner;
+            _coroutineRunner = coroutineRunner;
         }
 
         public void Load(string sceneName, Action onSceneLoaded = null)
         {
-            CorutineRunner.StartCoroutine(LoadScene(sceneName, onSceneLoaded));
+            _coroutineRunner.StartCoroutine(LoadScene(sceneName, onSceneLoaded));
         }
         
         private IEnumerator LoadScene(string sceneName, Action onSceneLoaded = null)
@@ -27,9 +27,9 @@ namespace CodeBase.Infrastructure
                 yield break;
             }
             
-            AsyncOperation loadSceneAsync = SceneManager.LoadSceneAsync(sceneName);
+            AsyncOperation waitNextScene = SceneManager.LoadSceneAsync(sceneName);
 
-            while (!loadSceneAsync.isDone)
+            while (!waitNextScene.isDone)
                 yield return null;
             
             onSceneLoaded?.Invoke();

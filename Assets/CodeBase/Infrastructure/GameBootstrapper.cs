@@ -1,16 +1,18 @@
-﻿using UnityEngine;
+﻿using CodeBase.Infrastructure.States;
+using UnityEngine;
 
 namespace CodeBase.Infrastructure
 {
     public class GameBootstrapper : MonoBehaviour, ICoroutineRunner
     {
         public LoadingCurtain LoadingCurtain;
-        private Game game;
+        
+        private Game _game;
 
         private void Awake()
         {
-            game = new Game(this, LoadingCurtain);
-            game.StateMachine.Enter<BootstrapState>();
+            _game = new Game(this, LoadingCurtain);
+            _game.StateMachine.Enter<BootstrapState>();
             
             DontDestroyOnLoad(this);
         }
