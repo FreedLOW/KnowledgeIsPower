@@ -11,7 +11,8 @@ namespace CodeBase.Infrastructure
 
         private void Awake()
         {
-            _game = new Game(this, LoadingCurtain);
+            var loadingCurtain = Instantiate(LoadingCurtain);
+            _game = new Game(this, loadingCurtain);
             _game.StateMachine.Enter<BootstrapState>();
             
             DontDestroyOnLoad(this);

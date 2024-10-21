@@ -1,7 +1,9 @@
 ﻿using CodeBase.Infrastructure.AssetManagement;
 using CodeBase.Infrastructure.Factory;
 using CodeBase.Infrastructure.Services;
-using CodeBase.Services.Input;
+using CodeBase.Infrastructure.Services.Input;
+using CodeBase.Infrastructure.Services.Progress;
+using CodeBase.Infrastructure.Services.SaveLoad;
 using UnityEngine;
 
 namespace CodeBase.Infrastructure.States
@@ -25,14 +27,14 @@ namespace CodeBase.Infrastructure.States
 
         public void Enter()
         {
-            _sceneLoader.Load(SceneName, onSceneLoaded: EnterLoadLevel);
+            _sceneLoader.Load(SceneName, onSceneLoaded: EnterLoadProgress);
         }
 
         public void Exit() { }
 
-        private void EnterLoadLevel()
+        private void EnterLoadProgress()
         {
-            _gameStateMachine.Enter<LoadLevelState, string>("Main");
+            _gameStateMachine.Enter<LoadProgressState>();
         }
 
         private void RegisterServices()
@@ -40,9 +42,10 @@ namespace CodeBase.Infrastructure.States
             _allServices.RegisterSingle<IInputService>(InputService());
 
             _allServices.RegisterSingle<IAssetProvider>(new AssetProvider());
-            
-            var gameFactory = new GameFactory(_allServices.Single<IAssetProvider>());
-            _allServices.RegisterSingle<IGameFactory>(gameFactory);
+            _allServices.RegisterSingle<IGameFactory>(new GameFactory(_allServices.Single<IAssetProvider>()));
+            _allServices.RegisterSingle<IPersistentProgressService>(new PersistentProgressService());
+            _allServices.RegisterSingle<ISaveLoadService>(new SaveLoadService(
+                _allServices.Single<IPersistentProgressService>(), _allServices.Single<IGameFactory>()));
         }
 
         private static IInputService InputService()
