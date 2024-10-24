@@ -1319,6 +1319,9 @@ GameObject:
   - component: {fileID: 3179950601378539297}
   - component: {fileID: 1941000699}
   - component: {fileID: 1116488208593094317}
+  - component: {fileID: 5771888390274975286}
+  - component: {fileID: 6752009902740101661}
+  - component: {fileID: 1217331498306526841}
   - component: {fileID: 4947698517904788393}
   - component: {fileID: 9190485478279014925}
   m_Layer: 12
@@ -1380,13 +1383,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2.5
-  m_Radius: 1
+  m_Height: 2
+  m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1.2, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &1941000699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1415,6 +1418,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterController: {fileID: 3179950601378539297}
   movementSpeed: 4
+--- !u!114 &5771888390274975286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bb974b3bbad40a7924a284c50f5ec50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animator: {fileID: 1941000699}
+--- !u!114 &6752009902740101661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 118b05216cdc49839c46a918f617a169, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HeroHealth: {fileID: 5771888390274975286}
+  HeroMove: {fileID: 1116488208593094317}
+  HeroAttack: {fileID: 1217331498306526841}
+  Animator: {fileID: 1941000699}
+  DeathFx: {fileID: 100006, guid: 892ff7bc094d60a4c93e25460e4ab445, type: 3}
+--- !u!114 &1217331498306526841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99209650ee734e77a3abde18cf0c6a2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animator: {fileID: 1941000699}
+  CharacterController: {fileID: 3179950601378539297}
 --- !u!54 &4947698517904788393
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1427,9 +1474,9 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!65 &9190485478279014925
 BoxCollider:

@@ -11,7 +11,7 @@ namespace CodeBase.Infrastructure.Factory
         List<ISavedProgress> ProgressesWriters { get; }
         
         GameObject CreateHero(GameObject at);
-        void CreateHud();
+        GameObject CreateHud();
         void Cleanup();
     }
 }

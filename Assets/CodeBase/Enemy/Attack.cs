@@ -1,4 +1,6 @@
 using System.Collections;
+using CodeBase.Hero;
+using CodeBase.Logic;
 using UnityEngine;
 
 namespace CodeBase.Enemy
@@ -11,6 +13,7 @@ namespace CodeBase.Enemy
         public float Cooldown = 3f;
         public float Cleavage = 0.5f;
         public float EffectiveDistance = 0.5f;
+        public float Damage = 10f;
 
         private readonly Collider[] _hits = new Collider[1];
 
@@ -41,6 +44,7 @@ namespace CodeBase.Enemy
             if (Hit(out Collider hit))
             {
                 PhysicsDebug.DrawDebug(HitPoint(), Cleavage, 2f);
+                hit.GetComponent<IHealth>().TakeDamage(Damage);
             }
         }
 

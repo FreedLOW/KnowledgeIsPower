@@ -20,7 +20,7 @@ namespace CodeBase.Infrastructure.Factory
         public GameObject CreateHero(GameObject at) => 
             InstantiateRegistered(AssetsPath.HeroPath, at: at.transform.position);
 
-        public void CreateHud() => 
+        public GameObject CreateHud() => 
             InstantiateRegistered(AssetsPath.HudPath);
 
         public void Cleanup()
