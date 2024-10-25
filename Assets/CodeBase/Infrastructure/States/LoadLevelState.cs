@@ -1,5 +1,4 @@
 ﻿using CodeBase.CameraLogic;
-using CodeBase.Hero;
 using CodeBase.Infrastructure.Factory;
 using CodeBase.Infrastructure.Services.Progress;
 using CodeBase.Logic;
@@ -11,6 +10,7 @@ namespace CodeBase.Infrastructure.States
     public class LoadLevelState : IPayloadedState<string>
     {
         private const string InitialPointTag = "InitialPoint";
+        private const string SpawnerTag = "EnemySpawner";
 
         private readonly GameStateMachine gameStateMachine;
         private readonly SceneLoader sceneLoader;
@@ -45,6 +45,15 @@ namespace CodeBase.Infrastructure.States
             gameStateMachine.Enter<GameLoopState>();
         }
 
+        private void InitGameWorld()
+        {
+            InitSpawners();
+            
+            var hero = gameFactory.CreateHero(at: GameObject.FindWithTag(InitialPointTag));
+            CameraFollow(hero);
+            InitHUD(hero);
+        }
+
         private void InformProgressReaders()
         {
             foreach (ISavedProgressReader progressReader in gameFactory.ProgressReaders)
@@ -53,11 +62,13 @@ namespace CodeBase.Infrastructure.States
             }
         }
 
-        private void InitGameWorld()
+        private void InitSpawners()
         {
-            var hero = gameFactory.CreateHero(at: GameObject.FindWithTag(InitialPointTag));
-            CameraFollow(hero);
-            InitHUD(hero);
+            foreach (GameObject spawnerObject in GameObject.FindGameObjectsWithTag(SpawnerTag))
+            {
+                EnemySpawner enemySpawner = spawnerObject.GetComponent<EnemySpawner>();
+                gameFactory.Register(enemySpawner);
+            }
         }
 
         private void InitHUD(GameObject hero)
