@@ -9,20 +9,18 @@ namespace CodeBase.Enemy
 
         private const float MinDistance = 1f;
 
-        private Transform _target;
-
         private void Update()
         {
             if (HasTarget() && TargetNotReached())
             {
-                Agent.destination = _target.position;
+                Agent.destination = Target.position;
             }
         }
 
         private bool HasTarget() =>
-            _target != null;
+            Target != null;
 
         private bool TargetNotReached() =>
-            Vector3.Distance(Agent.transform.position, _target.position) >= MinDistance;
+            Vector3.Distance(Agent.transform.position, Target.position) >= MinDistance;
     }
 }

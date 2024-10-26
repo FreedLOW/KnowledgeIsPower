@@ -1,5 +1,3 @@
-using System.Collections;
-using CodeBase.Hero;
 using CodeBase.Logic;
 using UnityEngine;
 
@@ -23,12 +21,14 @@ namespace CodeBase.Enemy
         private int _heroLayer;
         private bool _isAttackActive;
 
-        private IEnumerator Start()
+        public void Construct(Transform heroTransform)
+        {
+            _heroTransform = heroTransform;
+        }
+
+        private void Awake()
         {
             _heroLayer = 1 << LayerMask.NameToLayer("Player");
-            
-            yield return new WaitForSeconds(1f);
-            _heroTransform = GameObject.FindGameObjectWithTag("Player").transform;
         }
 
         private void Update()
