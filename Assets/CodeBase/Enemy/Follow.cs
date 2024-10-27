@@ -10,5 +10,8 @@ namespace CodeBase.Enemy
         {
             Target = hero;
         }
+
+        public void RemoveTarget() => 
+            Target = null;
     }
 }

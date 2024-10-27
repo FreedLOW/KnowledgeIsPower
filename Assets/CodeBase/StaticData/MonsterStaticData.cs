@@ -22,6 +22,11 @@ namespace CodeBase.StaticData
         [Range(0.5f, 10f)] 
         public float MoveSpeed;
 
+        [Range(1, 5)] 
+        public int LootMin;
+        [Range(5, 10)] 
+        public int LootMax;
+        
         public GameObject Prefab;
     }
 }

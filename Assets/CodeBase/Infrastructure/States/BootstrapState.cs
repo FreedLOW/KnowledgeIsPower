@@ -40,16 +40,21 @@ namespace CodeBase.Infrastructure.States
 
         private void RegisterServices()
         {
-            _allServices.RegisterSingle<IInputService>(InputService());
+            _allServices.RegisterSingle(InputService());
 
             RegisterStaticDataService();
+
+            IRandomService random = new RandomService();
+            _allServices.RegisterSingle(random);
             
+            IPersistentProgressService progressService = new PersistentProgressService();
+            _allServices.RegisterSingle(progressService);
+
             _allServices.RegisterSingle<IAssetProvider>(new AssetProvider());
             _allServices.RegisterSingle<IGameFactory>(new GameFactory(_allServices.Single<IAssetProvider>(),
-                _allServices.Single<IStaticDataService>()));
-            _allServices.RegisterSingle<IPersistentProgressService>(new PersistentProgressService());
-            _allServices.RegisterSingle<ISaveLoadService>(new SaveLoadService(
-                _allServices.Single<IPersistentProgressService>(), _allServices.Single<IGameFactory>()));
+                _allServices.Single<IStaticDataService>(), random, progressService));
+            _allServices.RegisterSingle<ISaveLoadService>(new SaveLoadService(progressService,
+                _allServices.Single<IGameFactory>()));
         }
 
         private static IInputService InputService()
