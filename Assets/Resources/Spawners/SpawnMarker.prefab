@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2498863797183463877
+--- !u!1 &6551605523503012113
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,55 +8,55 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6316950599298506888}
-  - component: {fileID: 4141349689656890138}
-  - component: {fileID: 5984142953728097286}
+  - component: {fileID: 5845411110984529130}
+  - component: {fileID: 7016719272052822764}
+  - component: {fileID: 6520502536065087683}
   m_Layer: 0
-  m_Name: Spawner
-  m_TagString: EnemySpawner
-  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
+  m_Name: SpawnMarker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6316950599298506888
+--- !u!4 &5845411110984529130
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2498863797183463877}
+  m_GameObject: {fileID: 6551605523503012113}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.9584913, y: 0, z: -6.7512984}
+  m_LocalPosition: {x: -10.38, y: 0.58, z: -14.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4141349689656890138
+--- !u!114 &7016719272052822764
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2498863797183463877}
+  m_GameObject: {fileID: 6551605523503012113}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f541867d38d1d67448ac55bbedc7a889, type: 3}
+  m_Script: {fileID: 11500000, guid: 22ad0181a10c4c20afaf219601712446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MonsterTypeId: 1
-  slain: 0
---- !u!114 &5984142953728097286
+--- !u!114 &6520502536065087683
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2498863797183463877}
+  m_GameObject: {fileID: 6551605523503012113}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5178f968ac8a4cb0a577b1773dba6ff8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: Main_aee9256c-d957-4754-a67d-bcdf61f2e4cf
+  Id: Main_19845134-a9f9-4379-89f9-d4d0b6b255dc
+  ShouldGenerate: 0
