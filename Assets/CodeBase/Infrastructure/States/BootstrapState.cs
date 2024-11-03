@@ -5,6 +5,8 @@ using CodeBase.Infrastructure.Services.Input;
 using CodeBase.Infrastructure.Services.Progress;
 using CodeBase.Infrastructure.Services.SaveLoad;
 using CodeBase.Infrastructure.Services.StaticData;
+using CodeBase.UI.Services.Factory;
+using CodeBase.UI.Services.Window;
 using UnityEngine;
 
 namespace CodeBase.Infrastructure.States
@@ -46,13 +48,20 @@ namespace CodeBase.Infrastructure.States
 
             IRandomService random = new RandomService();
             _allServices.RegisterSingle(random);
+
+            IAssetProvider assetProvider = new AssetProvider();
+            _allServices.RegisterSingle(assetProvider);
             
             IPersistentProgressService progressService = new PersistentProgressService();
             _allServices.RegisterSingle(progressService);
 
-            _allServices.RegisterSingle<IAssetProvider>(new AssetProvider());
-            _allServices.RegisterSingle<IGameFactory>(new GameFactory(_allServices.Single<IAssetProvider>(),
-                _allServices.Single<IStaticDataService>(), random, progressService));
+            _allServices.RegisterSingle<IUIFactory>(new UIFactory(assetProvider, _allServices.Single<IStaticDataService>(),
+                progressService));
+            _allServices.RegisterSingle<IWindowService>(new WindowService(_allServices.Single<IUIFactory>()));
+
+            _allServices.RegisterSingle<IGameFactory>(new GameFactory(assetProvider, 
+                _allServices.Single<IStaticDataService>(), random, progressService,
+                _allServices.Single<IWindowService>()));
             _allServices.RegisterSingle<ISaveLoadService>(new SaveLoadService(progressService,
                 _allServices.Single<IGameFactory>()));
         }
@@ -70,6 +79,7 @@ namespace CodeBase.Infrastructure.States
             IStaticDataService staticData = new StaticDataService();
             staticData.LoadMonsters();
             staticData.LoadLevels();
+            staticData.LoadWindowConfigs();
             _allServices.RegisterSingle(staticData);
         }
     }
