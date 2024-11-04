@@ -810,7 +810,8 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
   webGLPowerPreference: 2
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    Standalone: LEVELPLAY_DEPENDENCIES_INSTALLED
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
@@ -902,7 +903,9 @@ PlayerSettings:
   vrEditorSettings: {}
   cloudServicesEnabled:
     Build: 1
+    Purchasing: 1
     UNet: 1
+    Unity Ads: 1
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -917,11 +920,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 679d389d-2ccb-4383-bf53-ed47851e305d
+  cloudProjectId: 8aabb8d8-daf0-4a8c-bbe3-e92fff0df756
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: KnowledgeIsPower
-  organizationId: kate-3755722
+  organizationId: unity_0lsidl0
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 

@@ -18,6 +18,12 @@ namespace CodeBase.Data
             OnCollected?.Invoke();
         }
 
+        public void Add(int lootAmount)
+        {
+            Collected += lootAmount;
+            OnCollected?.Invoke();
+        }
+
         public void AddLeftLoot(string id, Vector3Data position, Loot loot)
         {
             if (LeftLoots.Exists(l => l.Id == id))

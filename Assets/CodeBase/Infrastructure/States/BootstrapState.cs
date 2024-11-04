@@ -1,6 +1,7 @@
 ﻿using CodeBase.Infrastructure.AssetManagement;
 using CodeBase.Infrastructure.Factory;
 using CodeBase.Infrastructure.Services;
+using CodeBase.Infrastructure.Services.Ads;
 using CodeBase.Infrastructure.Services.Input;
 using CodeBase.Infrastructure.Services.Progress;
 using CodeBase.Infrastructure.Services.SaveLoad;
@@ -46,6 +47,8 @@ namespace CodeBase.Infrastructure.States
 
             RegisterStaticDataService();
 
+            RegisterAdsService();
+
             IRandomService random = new RandomService();
             _allServices.RegisterSingle(random);
 
@@ -56,7 +59,7 @@ namespace CodeBase.Infrastructure.States
             _allServices.RegisterSingle(progressService);
 
             _allServices.RegisterSingle<IUIFactory>(new UIFactory(assetProvider, _allServices.Single<IStaticDataService>(),
-                progressService));
+                progressService, _allServices.Single<IAdsService>()));
             _allServices.RegisterSingle<IWindowService>(new WindowService(_allServices.Single<IUIFactory>()));
 
             _allServices.RegisterSingle<IGameFactory>(new GameFactory(assetProvider, 
@@ -81,6 +84,13 @@ namespace CodeBase.Infrastructure.States
             staticData.LoadLevels();
             staticData.LoadWindowConfigs();
             _allServices.RegisterSingle(staticData);
+        }
+
+        private void RegisterAdsService()
+        {
+            IAdsService adsService = new AdsService();
+            adsService.Initialize();
+            _allServices.RegisterSingle(adsService);
         }
     }
 }
