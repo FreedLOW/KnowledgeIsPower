@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace CodeBase.StaticData
 {
@@ -27,6 +28,6 @@ namespace CodeBase.StaticData
         [Range(5, 10)] 
         public int LootMax;
         
-        public GameObject Prefab;
+        public AssetReferenceGameObject PrefabReference;
     }
 }

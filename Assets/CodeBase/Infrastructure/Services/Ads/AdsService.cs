@@ -6,10 +6,10 @@ namespace CodeBase.Infrastructure.Services.Ads
 {
     public class AdsService : IAdsService, IUnityAdsLoadListener, IUnityAdsShowListener
     {
-        private const string AndroidGameId = "AndroidGameId";
-        private const string IOSGameId = "IOSGameId";
+        private const string AndroidGameId = "3446990";
+        private const string IOSGameId = "3446991";
 
-        private const string RewardedVideoPlacementId = "RewardedVideoPlacementId";
+        private const string RewardedVideoPlacementId = "Rewarded_Android";
         
         private string _gameId;
         private Action _onVideoFinished;

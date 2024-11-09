@@ -5,5 +5,6 @@
         Unknown = 0,
         Lich = 1,
         Golem = 2,
+        FatDragon = 3,
     }
 }

@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: b448149bd803a454aabe8f410ff0b977
+  m_SerializeEntries:
+  - m_GUID: fef8ee76ba818f84b81b11da6bda5ddf
+    m_Address: Golem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e095834ce6b0e444193d3673c40c82fb
+    m_Address: Lich
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c09d884e7ca40460f91e5b20675d3e94
+    m_Address: FatDragon
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d587ba2fd38b20449986c007d26d2b8a
+    m_Address: Loot
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 395842b944b265c41bbd9221673d7e08
+    m_Address: SpawnPoint
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d6e894778375c5a4280a9fb729037245
+    m_Address: LevelTransfer
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 181862a89f60d7a459002f9870860ad4
+    m_Address: Hero
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f6395af14c6ae2d4ea00c7e97e633ad3
+    m_Address: Hud
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4e0eaf4694bd67a43803ae026d011c93
+    m_Address: UIRoot
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: b0935f31e67dd0e49b5dbd70a50ca6ae, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: accb84817d3ab8647a6a8dbee6ae39d3, type: 2}
+    - {fileID: 11400000, guid: d76a4fb8e4cf8cf42a4769e8d683b856, type: 2}

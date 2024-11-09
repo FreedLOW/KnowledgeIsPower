@@ -43,6 +43,8 @@ namespace CodeBase.Infrastructure.States
 
         private void RegisterServices()
         {
+            _allServices.RegisterSingle<IGameStateMachine>(_gameStateMachine);
+            
             _allServices.RegisterSingle(InputService());
 
             RegisterStaticDataService();
@@ -53,6 +55,7 @@ namespace CodeBase.Infrastructure.States
             _allServices.RegisterSingle(random);
 
             IAssetProvider assetProvider = new AssetProvider();
+            assetProvider.Initialize();
             _allServices.RegisterSingle(assetProvider);
             
             IPersistentProgressService progressService = new PersistentProgressService();

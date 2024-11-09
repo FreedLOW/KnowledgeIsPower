@@ -14,18 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelKey: Main
   EnemySpawners:
-  - Id: Main_d4961be8-2977-4d5c-88c3-01fed7d96a08
-    MonsterTypeId: 2
-    Position: {x: 0.90566254, y: 0.5799999, z: 10.344285}
-  - Id: Main_e7cecc4f-2cf2-4357-a9db-be7db9d7cb35
+  - Id: Main_19845134-a9f9-4379-89f9-d4d0b6b255dc
     MonsterTypeId: 1
-    Position: {x: 11.900001, y: 0.5799999, z: -5.76}
+    Position: {x: -10.38, y: 0.5799999, z: -14.52}
   - Id: Main_77ab4ec2-7516-4c04-82e4-21163dd9cb41
     MonsterTypeId: 2
     Position: {x: 0.80999994, y: 0.5799999, z: -0.83}
   - Id: Main_bcccb1cb-be52-498e-95f8-ca70d36548a2
     MonsterTypeId: 1
     Position: {x: -7.51, y: 0.5799999, z: -7.5600004}
-  - Id: Main_19845134-a9f9-4379-89f9-d4d0b6b255dc
+  - Id: Main_e7cecc4f-2cf2-4357-a9db-be7db9d7cb35
     MonsterTypeId: 1
-    Position: {x: -10.38, y: 0.5799999, z: -14.52}
+    Position: {x: 11.900001, y: 0.5799999, z: -5.76}
+  - Id: Main_d4961be8-2977-4d5c-88c3-01fed7d96a08
+    MonsterTypeId: 2
+    Position: {x: 0.90566254, y: 0.5799999, z: 10.344285}
+  InitialPoint: {x: 11.137655, y: 0.27838045, z: -15.065678}
+  LevelTransferPoint: {x: 0.67502224, y: 0.945, z: 12.626}

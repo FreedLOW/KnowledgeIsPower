@@ -14,10 +14,7 @@ namespace CodeBase.UI.Elements
         {
             _worldData = worldData;
             _worldData.LootData.OnCollected += OnCollected;
-        }
-
-        private void Start()
-        {
+            
             OnCollected();
         }
 

@@ -38,9 +38,9 @@ namespace CodeBase.Enemy
             _lootMax = max;
         }
 
-        private void OnSpawnLoot()
+        private async void OnSpawnLoot()
         {
-            LootPiece loot = _factory.SpawnLoot();
+            LootPiece loot = await _factory.SpawnLoot();
             loot.transform.position = transform.position;
 
             Loot spawnLoot = GenerateLoot();
