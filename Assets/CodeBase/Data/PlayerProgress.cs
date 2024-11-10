@@ -9,6 +9,7 @@ namespace CodeBase.Data
         public HeroState HeroState;
         public HeroStats HeroStats;
         public KillData KillData;
+        public PurchaseData PurchaseData;
 
         public PlayerProgress(string initialLevel)
         {
@@ -16,6 +17,7 @@ namespace CodeBase.Data
             HeroState = new HeroState();
             HeroStats = new HeroStats();
             KillData = new KillData();
+            PurchaseData = new PurchaseData();
         }
     }
 }

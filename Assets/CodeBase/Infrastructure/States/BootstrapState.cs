@@ -2,6 +2,7 @@
 using CodeBase.Infrastructure.Factory;
 using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.Ads;
+using CodeBase.Infrastructure.Services.IAP;
 using CodeBase.Infrastructure.Services.Input;
 using CodeBase.Infrastructure.Services.Progress;
 using CodeBase.Infrastructure.Services.SaveLoad;
@@ -61,8 +62,10 @@ namespace CodeBase.Infrastructure.States
             IPersistentProgressService progressService = new PersistentProgressService();
             _allServices.RegisterSingle(progressService);
 
+            RegisterIAPService(progressService);
+
             _allServices.RegisterSingle<IUIFactory>(new UIFactory(assetProvider, _allServices.Single<IStaticDataService>(),
-                progressService, _allServices.Single<IAdsService>()));
+                progressService, _allServices.Single<IAdsService>(), _allServices.Single<IIAPService>()));
             _allServices.RegisterSingle<IWindowService>(new WindowService(_allServices.Single<IUIFactory>()));
 
             _allServices.RegisterSingle<IGameFactory>(new GameFactory(assetProvider, 
@@ -94,6 +97,13 @@ namespace CodeBase.Infrastructure.States
             IAdsService adsService = new AdsService();
             adsService.Initialize();
             _allServices.RegisterSingle(adsService);
+        }
+
+        private void RegisterIAPService(IPersistentProgressService progressService)
+        {
+            IIAPService iapService = new IAPService(new IAPProvider(), progressService);
+            iapService.Initialize();
+            _allServices.RegisterSingle<IIAPService>(iapService);
         }
     }
 }

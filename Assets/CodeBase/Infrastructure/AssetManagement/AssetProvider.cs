@@ -53,6 +53,9 @@ namespace CodeBase.Infrastructure.AssetManagement
         public Task<GameObject> Instantiate(string path, Vector3 at) => 
             Addressables.InstantiateAsync(path, at, Quaternion.identity).Task;
 
+        public Task<GameObject> Instantiate(string path, Transform under) => 
+            Addressables.InstantiateAsync(path, under).Task;
+
         public Task<GameObject> Instantiate(string path) => 
             Addressables.InstantiateAsync(path).Task;
 

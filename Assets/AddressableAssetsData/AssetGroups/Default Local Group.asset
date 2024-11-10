@@ -53,6 +53,22 @@ MonoBehaviour:
     m_Address: UIRoot
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 797b87a6002193947821e5637109e269
+    m_Address: ShopItem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d0ea2ec653dd331458a02626c7a02955
+    m_Address: iap_icon_4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6b213c5905ab86247bec56e1134be3ed
+    m_Address: iap_icon_12
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8a38e0c362c83a047983d02b417b0980
+    m_Address: iap_icon_18
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: b0935f31e67dd0e49b5dbd70a50ca6ae, type: 2}
   m_SchemaSet:
